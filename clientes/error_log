@@ -1,0 +1,220 @@
+[25-Oct-2025 00:07:39 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.area_total' in 'SELECT' | SQL: 
+    SELECT st.*,
+           p.id as property_id,
+           p.reference as property_reference,
+           p.title as property_title,
+           p.address as property_address,
+           p.city as property_city,
+           p.state_province as property_state,
+           p.price as property_price,
+           p.bedrooms,
+           p.bathrooms,
+           p.area_total,
+           p.area_built,
+           p.parking_spaces,
+           p.year_built,
+           p.description as property_description,
+           p.status as property_status,
+           pt.name as property_type,
+           pt.icon as property_type_icon,
+           (SELECT image_url FROM property_images WHERE property_id = p.id AND is_main = 1 LIMIT 1) as property_image,
+           (SELECT COUNT(*) FROM property_images WHERE property_id = p.id) as total_images,
+           CONCAT(u.first_name, ' ', u.last_name) as agent_name,
+           u.phone as agent_phone,
+           u.email as agent_email,
+           u.profile_picture as agent_picture,
+           
+           -- Contadores relacionados
+           (SELECT COUNT(*) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as document_count,
+           (SELECT COUNT(*) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id AND sender_type = 'admin' AND is_read = 0) as unread_messages,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id) as invoice_count,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id AND status IN ('pending', 'partial', 'overdue')) as pending_invoices,
+           
+           -- Última actividad
+           (SELECT MAX(upload_date) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as last_document_date,
+           (SELECT MAX(created_at) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id) as last_comment_date
+           
+    FROM sales_transactions st
+    INNER JOIN properties p ON st.property_id = p.id
+    LEFT JOIN property_types pt ON p.property_type_id = pt.id
+    LEFT JOIN users u ON st.agent_id = u.id
+    WHERE st.client_id = ?
+    AND st.status IN ('completed', 'in_progress')
+    ORDER BY st.created_at DESC
+
+[25-Oct-2025 00:07:53 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.area_total' in 'SELECT' | SQL: 
+    SELECT st.*,
+           p.id as property_id,
+           p.reference as property_reference,
+           p.title as property_title,
+           p.address as property_address,
+           p.city as property_city,
+           p.state_province as property_state,
+           p.price as property_price,
+           p.bedrooms,
+           p.bathrooms,
+           p.area_total,
+           p.area_built,
+           p.parking_spaces,
+           p.year_built,
+           p.description as property_description,
+           p.status as property_status,
+           pt.name as property_type,
+           pt.icon as property_type_icon,
+           (SELECT image_url FROM property_images WHERE property_id = p.id AND is_main = 1 LIMIT 1) as property_image,
+           (SELECT COUNT(*) FROM property_images WHERE property_id = p.id) as total_images,
+           CONCAT(u.first_name, ' ', u.last_name) as agent_name,
+           u.phone as agent_phone,
+           u.email as agent_email,
+           u.profile_picture as agent_picture,
+           
+           -- Contadores relacionados
+           (SELECT COUNT(*) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as document_count,
+           (SELECT COUNT(*) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id AND sender_type = 'admin' AND is_read = 0) as unread_messages,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id) as invoice_count,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id AND status IN ('pending', 'partial', 'overdue')) as pending_invoices,
+           
+           -- Última actividad
+           (SELECT MAX(upload_date) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as last_document_date,
+           (SELECT MAX(created_at) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id) as last_comment_date
+           
+    FROM sales_transactions st
+    INNER JOIN properties p ON st.property_id = p.id
+    LEFT JOIN property_types pt ON p.property_type_id = pt.id
+    LEFT JOIN users u ON st.agent_id = u.id
+    WHERE st.client_id = ?
+    AND st.status IN ('completed', 'in_progress')
+    ORDER BY st.created_at DESC
+
+[27-Oct-2025 22:20:12 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.area_total' in 'SELECT' | SQL: 
+    SELECT st.*,
+           p.id as property_id,
+           p.reference as property_reference,
+           p.title as property_title,
+           p.address as property_address,
+           p.city as property_city,
+           p.state_province as property_state,
+           p.price as property_price,
+           p.bedrooms,
+           p.bathrooms,
+           p.area_total,
+           p.area_built,
+           p.parking_spaces,
+           p.year_built,
+           p.description as property_description,
+           p.status as property_status,
+           pt.name as property_type,
+           pt.icon as property_type_icon,
+           (SELECT image_url FROM property_images WHERE property_id = p.id AND is_main = 1 LIMIT 1) as property_image,
+           (SELECT COUNT(*) FROM property_images WHERE property_id = p.id) as total_images,
+           CONCAT(u.first_name, ' ', u.last_name) as agent_name,
+           u.phone as agent_phone,
+           u.email as agent_email,
+           u.profile_picture as agent_picture,
+           
+           -- Contadores relacionados
+           (SELECT COUNT(*) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as document_count,
+           (SELECT COUNT(*) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id AND sender_type = 'admin' AND is_read = 0) as unread_messages,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id) as invoice_count,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id AND status IN ('pending', 'partial', 'overdue')) as pending_invoices,
+           
+           -- Última actividad
+           (SELECT MAX(upload_date) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as last_document_date,
+           (SELECT MAX(created_at) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id) as last_comment_date
+           
+    FROM sales_transactions st
+    INNER JOIN properties p ON st.property_id = p.id
+    LEFT JOIN property_types pt ON p.property_type_id = pt.id
+    LEFT JOIN users u ON st.agent_id = u.id
+    WHERE st.client_id = ?
+    AND st.status IN ('completed', 'in_progress')
+    ORDER BY st.created_at DESC
+
+[03-Dec-2025 20:25:37 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.area_total' in 'SELECT' | SQL: 
+    SELECT st.*,
+           p.id as property_id,
+           p.reference as property_reference,
+           p.title as property_title,
+           p.address as property_address,
+           p.city as property_city,
+           p.state_province as property_state,
+           p.price as property_price,
+           p.bedrooms,
+           p.bathrooms,
+           p.area_total,
+           p.area_built,
+           p.parking_spaces,
+           p.year_built,
+           p.description as property_description,
+           p.status as property_status,
+           pt.name as property_type,
+           pt.icon as property_type_icon,
+           (SELECT image_url FROM property_images WHERE property_id = p.id AND is_main = 1 LIMIT 1) as property_image,
+           (SELECT COUNT(*) FROM property_images WHERE property_id = p.id) as total_images,
+           CONCAT(u.first_name, ' ', u.last_name) as agent_name,
+           u.phone as agent_phone,
+           u.email as agent_email,
+           u.profile_picture as agent_picture,
+           
+           -- Contadores relacionados
+           (SELECT COUNT(*) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as document_count,
+           (SELECT COUNT(*) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id AND sender_type = 'admin' AND is_read = 0) as unread_messages,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id) as invoice_count,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id AND status IN ('pending', 'partial', 'overdue')) as pending_invoices,
+           
+           -- Última actividad
+           (SELECT MAX(upload_date) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as last_document_date,
+           (SELECT MAX(created_at) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id) as last_comment_date
+           
+    FROM sales_transactions st
+    INNER JOIN properties p ON st.property_id = p.id
+    LEFT JOIN property_types pt ON p.property_type_id = pt.id
+    LEFT JOIN users u ON st.agent_id = u.id
+    WHERE st.client_id = ?
+    AND st.status IN ('completed', 'in_progress')
+    ORDER BY st.created_at DESC
+
+[13-Jan-2026 12:42:09 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.area_total' in 'SELECT' | SQL: 
+    SELECT st.*,
+           p.id as property_id,
+           p.reference as property_reference,
+           p.title as property_title,
+           p.address as property_address,
+           p.city as property_city,
+           p.state_province as property_state,
+           p.price as property_price,
+           p.bedrooms,
+           p.bathrooms,
+           p.area_total,
+           p.area_built,
+           p.parking_spaces,
+           p.year_built,
+           p.description as property_description,
+           p.status as property_status,
+           pt.name as property_type,
+           pt.icon as property_type_icon,
+           (SELECT image_url FROM property_images WHERE property_id = p.id AND is_main = 1 LIMIT 1) as property_image,
+           (SELECT COUNT(*) FROM property_images WHERE property_id = p.id) as total_images,
+           CONCAT(u.first_name, ' ', u.last_name) as agent_name,
+           u.phone as agent_phone,
+           u.email as agent_email,
+           u.profile_picture as agent_picture,
+           
+           -- Contadores relacionados
+           (SELECT COUNT(*) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as document_count,
+           (SELECT COUNT(*) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id AND sender_type = 'admin' AND is_read = 0) as unread_messages,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id) as invoice_count,
+           (SELECT COUNT(*) FROM invoices WHERE property_id = p.id AND client_id = st.client_id AND status IN ('pending', 'partial', 'overdue')) as pending_invoices,
+           
+           -- Última actividad
+           (SELECT MAX(upload_date) FROM client_property_documents WHERE property_id = p.id AND client_id = st.client_id) as last_document_date,
+           (SELECT MAX(created_at) FROM client_property_comments WHERE property_id = p.id AND client_id = st.client_id) as last_comment_date
+           
+    FROM sales_transactions st
+    INNER JOIN properties p ON st.property_id = p.id
+    LEFT JOIN property_types pt ON p.property_type_id = pt.id
+    LEFT JOIN users u ON st.agent_id = u.id
+    WHERE st.client_id = ?
+    AND st.status IN ('completed', 'in_progress')
+    ORDER BY st.created_at DESC
+

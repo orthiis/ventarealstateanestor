@@ -1,0 +1,2 @@
+[27-Oct-2025 00:40:10 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'WHERE' | SQL: UPDATE invoices SET status = :set_0_status, cancelled_at = :set_1_cancelled_at, cancelled_reason = :set_2_cancelled_reason, updated_at = :set_3_updated_at WHERE Array
+[27-Oct-2025 00:40:10 America/Santo_Domingo] DB Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'WHERE' | SQL: UPDATE sales_transactions SET has_pending_invoice = :set_0_has_pending_invoice WHERE Array
